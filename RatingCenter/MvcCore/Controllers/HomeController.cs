@@ -6,26 +6,37 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcCore.Models;
+using MvcCore.Services;
 
 namespace MvcCore.Controllers
 {
-    public class HomeController : Controller
+    public class FilmsController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IFilmsService _filmsService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public FilmsController(IFilmsService filmsService)
         {
-            _logger = logger;
+            _filmsService = filmsService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _filmsService.GetFilms());
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            var model = await _filmsService.GetFilmDetails(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RateFilm(FilmRatingViewModel model)
+        {
+            await this._filmsService.Rate(model);
+
+            return RedirectToAction(nameof(Details), new { id = model.FilmId });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

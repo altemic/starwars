@@ -11,7 +11,7 @@ namespace Tests.StarWars
     public class IntegrationTests
     {
         [Test]
-        public async Task IsAPIReachable()
+        public async Task ApiShouldRespondWithOK()
         {
             using var httpClient = new HttpClient();
             

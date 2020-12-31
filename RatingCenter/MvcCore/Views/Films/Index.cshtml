@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MvcCore.Models.FilmViewModel>
+
+<h1>Welcome to Star Wars rating center!</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EpisodeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var film in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => film.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => film.EpisodeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => film.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => film.ReleaseDate)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = film.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

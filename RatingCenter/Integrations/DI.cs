@@ -10,7 +10,7 @@ namespace Integrations
     {
         public static void RegisterIntegrations(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddTransient<IStarWarsClient, StarWarsClient>();
+            serviceCollection.AddHttpClient<IStarWarsClient, StarWarsClient>();
         }
     }
 }
