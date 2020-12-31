@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using FluentAssertions;
 using Integrations.StarWars;
 using Moq;
 using Moq.Contrib.HttpClient;
@@ -39,7 +40,7 @@ namespace Tests.StarWars
         {
             var films = await _swClient.GetFilms();
 
-            Assert.AreEqual(6, films.Count());
+            films.Count().Should().Be(6);
         }
 
         [Test]
@@ -47,11 +48,11 @@ namespace Tests.StarWars
         {
             var newHope = await _swClient.GetFilmDetails("1");
 
-            Assert.AreEqual(4, newHope.EpisodeId);
-            Assert.AreEqual("A New Hope", newHope.Title);
-            Assert.AreEqual("George Lucas", newHope.Director);
+            newHope.EpisodeId.Should().Be(4);
+            newHope.Title.Should().Be("A New Hope");
+            newHope.Director.Should().Be("George Lucas");
 
-            Assert.AreEqual("1", newHope.Id);
+            newHope.Id.Should().Be("1");
         }
         
         #region TestStaticData
