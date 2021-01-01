@@ -58,16 +58,16 @@
     <table class="table">
         <thead>
             <tr>
-                <th class="col-md-3">
+                <th class="col-md-2">
                     @Html.DisplayNameFor(model => model.Ratings.FirstOrDefault().Nickname)
                 </th>
-                <th class="col-md-2">
+                <th class="col-md-1">
                     @Html.DisplayNameFor(model => model.Ratings.FirstOrDefault().Rating)
                 </th>
-                <th class="col-md-5">
+                <th class="col-md-7">
                     @Html.DisplayNameFor(model => model.Ratings.FirstOrDefault().Description)
                 </th>
-                <th class="col-md-3">
+                <th class="col-md-2">
                     @Html.DisplayNameFor(model => model.Ratings.FirstOrDefault().CreatedOn)
                 </th>
             </tr>
@@ -76,13 +76,13 @@
             @foreach (var rating in Model.Ratings)
             {
                 <tr>
-                    <td>
+                    <td style="word-break: break-word">
                         @rating.Nickname
                     </td>
                     <td>
                         @rating.Rating
                     </td>
-                    <td>
+                    <td style="word-break: break-word">
                         @rating.Description
                     </td>
                     <td>
