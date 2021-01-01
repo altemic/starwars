@@ -12,7 +12,7 @@ using MvcCore.Models;
 
 namespace MvcCore.Services
 {
-    //If rating functionality is to be used in other apps, should be extracted
+    //If rating functionality is to be used in other apps, should be extracted to other project
     //Depending on complexity of the solution we can/should split dtos into many layers,
     //But for sake of simplicity I am using the same model as in view
     public class FilmsService: IFilmsService
@@ -32,8 +32,8 @@ namespace MvcCore.Services
 
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Integrations.Dtos.FilmDto, MvcCore.Models.FilmViewModel>();
-                cfg.CreateMap<Entities.Models.FilmRating, MvcCore.Models.FilmRatingViewModel>();
+                cfg.CreateMap<FilmDto, FilmViewModel>();
+                cfg.CreateMap<FilmRating, FilmRatingViewModel>();
             });
 
             _mapper = new Mapper(config);
@@ -55,6 +55,7 @@ namespace MvcCore.Services
             //TODO: pagination
             var ratingsTask = _context.Set<FilmRating>()
                 .Where(f => f.ExternalId == id)
+                .OrderByDescending(f => f.CreatedOn)
                 .Take(10)
                 .ToListAsync();
 
@@ -90,9 +91,7 @@ namespace MvcCore.Services
                 Description = model.Description
             });
 
-            await _context.SaveChangesAsync();
-
-            return entry.Entity.FilmRatingId;
+            return await _context.SaveChangesAsync();
         }
 
         public async Task<double> GetAverageRating(string id)
@@ -106,11 +105,9 @@ namespace MvcCore.Services
             return 0;
         }
 
-        public IEnumerable<int> AllowedRatings() => Enumerable.Range(0, 11);
-
         private void ValidateRating(int rating)
         {
-            if (!AllowedRatings().Contains(rating))
+            if (!IFilmsService.AllowedRatings().Contains(rating))
                 throw new ArgumentOutOfRangeException($"Rating {rating} is outside of valid range.");
         }
     }

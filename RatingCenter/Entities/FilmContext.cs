@@ -16,6 +16,7 @@ namespace Entities
             modelBuilder.Entity<FilmRating>(entity =>
             {
                 entity.HasIndex(e => e.ExternalId);
+                entity.Property(e => e.CreatedOn).UsePropertyAccessMode(PropertyAccessMode.Property);
             });
         }
 
@@ -23,6 +24,7 @@ namespace Entities
         {
             base.OnConfiguring(optionsBuilder);
 
+            //Data should be persisted to durable database
             optionsBuilder.UseInMemoryDatabase("Films");
         }
 

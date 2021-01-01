@@ -4,12 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MvcCore.Services;
 
 namespace MvcCore.Models
 {
     public class FilmRatingViewModel
     {
         public string FilmId { get; set; }
+
+        [Display(Name = "Added")]
+        public DateTime CreatedOn { get; set; }
 
         [Display(Name = "Nickname")]
         public string Nickname { get; set; }
@@ -20,7 +24,6 @@ namespace MvcCore.Models
         [Display(Name = "Rating")]
         public int Rating { get; set; }
 
-        //TODO: Validation params should be stored in one place
-        public SelectList AllowedRatings => new SelectList(Enumerable.Range(0, 11));
+        public SelectList AllowedRatings => new SelectList(IFilmsService.AllowedRatings());
     }
 }

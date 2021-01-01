@@ -16,6 +16,6 @@ namespace MvcCore.Services
 
         Task<double> GetAverageRating(string id);
 
-        IEnumerable<int> AllowedRatings();
+        static IEnumerable<int> AllowedRatings() => Enumerable.Range(0,11);
     }
 }

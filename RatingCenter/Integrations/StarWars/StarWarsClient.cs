@@ -27,9 +27,8 @@ namespace Integrations.StarWars
         {
             var response = await _httpClient.GetAsync(uri);
 
-
             if (response.StatusCode == HttpStatusCode.NoContent 
-             || response.StatusCode == HttpStatusCode.NotFound)
+                || response.StatusCode == HttpStatusCode.NotFound)
                 return null;
 
             if (response.StatusCode != HttpStatusCode.OK)
