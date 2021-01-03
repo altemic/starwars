@@ -52,7 +52,7 @@ namespace Tests.StarWars
             newHope.Title.Should().Be("A New Hope");
             newHope.Director.Should().Be("George Lucas");
 
-            newHope.Id.Should().Be("1");
+            newHope.ExternalId.Should().Be("1");
         }
         
         #region TestStaticData

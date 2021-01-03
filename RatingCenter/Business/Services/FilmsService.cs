@@ -39,7 +39,7 @@ namespace Business.Services
                 .Map<IEnumerable<Integrations.Dtos.FilmDto>, IEnumerable<Business.Dtos.FilmDto>>(
                     await _client.GetFilms());
 
-            return films?.OrderBy(model => model.Id);
+            return films?.OrderBy(model => model.ExternalId);
         }
 
         public async Task<Business.Dtos.FilmDto> GetFilmDetails(string id) => 

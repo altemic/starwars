@@ -6,7 +6,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                @Html.DisplayNameFor(model => model.ExternalId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EpisodeId)
@@ -24,7 +24,7 @@
     @foreach (var film in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => film.Id)
+                @Html.DisplayFor(modelItem => film.ExternalId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => film.EpisodeId)
@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => film.ReleaseDate)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = film.Id })
+                @Html.ActionLink("Details", "Details", new { film.ExternalId })
             </td>
         </tr>
     }

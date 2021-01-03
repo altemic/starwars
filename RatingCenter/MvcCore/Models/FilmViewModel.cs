@@ -9,7 +9,7 @@ namespace MvcCore.Models
     public class FilmViewModel
     {
         [Display(Name = "#")]
-        public string Id { get; set; }
+        public string ExternalId { get; set; }
 
         [Display(Name = "Episode ID")]
         public int EpisodeId { get; set; }
@@ -38,7 +38,7 @@ namespace MvcCore.Models
             set => _averageRating = value;
         }
 
-        public FilmRatingViewModel Rating => new FilmRatingViewModel { ExternalId = Id };
+        public FilmRatingViewModel Rating => new FilmRatingViewModel { ExternalId = ExternalId };
 
         public IEnumerable<FilmRatingViewModel> Ratings { get; set; }
     }

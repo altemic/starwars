@@ -6,7 +6,7 @@ namespace Business.Dtos
 {
     public class FilmDto
     {
-        public string Id { get; set; }
+        public string ExternalId { get; set; }
         
         public string Url { get; set; }
 

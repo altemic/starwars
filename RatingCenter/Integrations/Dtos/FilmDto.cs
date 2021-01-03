@@ -30,6 +30,6 @@ namespace Integrations.Dtos
         [JsonPropertyName("release_date")]
         public DateTime ReleaseDate { get; set; }
 
-        public string Id => Url.Split("/").Last(p => !string.IsNullOrWhiteSpace(p));
+        public string ExternalId => Url.Split("/").Last(p => !string.IsNullOrWhiteSpace(p));
     }
 }
