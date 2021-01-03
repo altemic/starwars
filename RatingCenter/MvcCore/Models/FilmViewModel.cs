@@ -38,7 +38,7 @@ namespace MvcCore.Models
             set => _averageRating = value;
         }
 
-        public FilmRatingViewModel Rating => new FilmRatingViewModel { FilmId = Id };
+        public FilmRatingViewModel Rating => new FilmRatingViewModel { ExternalId = Id };
 
         public IEnumerable<FilmRatingViewModel> Ratings { get; set; }
     }

@@ -49,7 +49,7 @@ namespace Integrations.StarWars
         //But here I decided to sent another request and do not store data about films in local db
         //Other possible implementation is to fetch data about films from API at start and store them in local db
         public async Task<IEnumerable<FilmDto>> GetFilms() =>
-            (await Get<FilmsDto>(new Uri(_baseAddress)))?.Films;
+            (await Get<FilmsResponseDto>(new Uri(_baseAddress)))?.Films;
 
         public async Task<FilmDto> GetFilmDetails(string id) =>
             await Get<FilmDto>(new Uri($"{_baseAddress}{id}/"));

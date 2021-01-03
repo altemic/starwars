@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace Integrations.Dtos
 {
-    public class FilmsDto
+    public class FilmsResponseDto
     {
         [JsonPropertyName("count")]
         public int Count { get; set; }

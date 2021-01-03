@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business;
 using Entities;
 using Integrations;
 using Microsoft.Extensions.DependencyInjection;
-using MvcCore.Services;
 
 namespace MvcCore.Extensions
 {
@@ -13,14 +13,9 @@ namespace MvcCore.Extensions
     {
         public static void RegisterMvcCore(this IServiceCollection serviceCollection)
         {
-            #region ExternalDependencies
             serviceCollection.RegisterIntegrations();
             serviceCollection.RegisterEntities();
-            #endregion
-
-            #region InternalDependencies
-            serviceCollection.AddTransient<IFilmsService, FilmsService>();
-            #endregion
+            serviceCollection.RegisterBusiness();
         }
     }
 }
