@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using Business.Dtos;
 using Entities;
-using Entities.Models;
 using Integrations.StarWars;
-using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services
 {
