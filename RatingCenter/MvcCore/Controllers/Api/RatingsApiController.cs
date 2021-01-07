@@ -24,7 +24,7 @@ namespace MvcCore.Controllers.Api
             return Ok(await _ratingService.GetFilmRatings(id));
         }
 
-        [HttpGet]
+        [HttpGet("/average/{id}")]
         public async Task<IActionResult> Average(string id)
         {
             return Ok(await _ratingService.GetAverageRating(id));

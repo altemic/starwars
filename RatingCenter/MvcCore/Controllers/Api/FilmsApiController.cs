@@ -15,13 +15,14 @@ namespace MvcCore.Controllers.Api
             _filmsService = filmsService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             return Ok(await _filmsService.GetFilms());
         }
 
-        [HttpGet("Details({id})")]
-        public async Task<IActionResult> Details(string id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
         {
             return Ok(await _filmsService.GetFilmDetails(id));
         }

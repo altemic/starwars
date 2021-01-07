@@ -1,1 +1,55 @@
-<p>details works!</p>
+<div *ngIf="isLoading">
+  Loading...
+</div>
+<div *ngIf="!isLoading">
+  <h1>
+    Title: {{filmDetails.title}}
+  </h1>
+  <button mat-button (click)="goBack()" color="warn">Go Back</button>
+  <table>
+    <tr>
+      <td class="propName">Episode Id:</td>
+      <td class="propValue">{{filmDetails.episodeId}}</td>
+    </tr>
+    <tr>
+      <td class="propName">
+        Opening crawl:
+      </td>
+      <td class="propValue">
+        {{filmDetails.openingCrawl}}
+      </td>
+    </tr>
+    <tr>
+      <td class="propName">
+        Director:
+      </td>
+      <td class="propValue">
+        {{filmDetails.director}}
+      </td>
+    </tr>
+    <tr>
+      <td class="propName">
+        Producer:
+      </td>
+      <td class="propValue">
+        {{filmDetails.producer}}
+      </td>
+    </tr>
+    <tr>
+      <td class="propName">
+        Released:
+      </td>
+      <td class="propValue">
+        {{filmDetails.releaseDate}}
+      </td>
+    </tr>
+    <tr>
+      <td class="propName">
+        Average rating:
+      </td>
+      <td class="propValue">
+        {{0}}
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {EventService, VisibleComponent} from './services/event.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Client';
+
+  public constructor(private eventService: EventService) {
+  }
+
+  isListVisible(): boolean {
+    return this.eventService.visibleComponent === VisibleComponent.LIST;
+  }
+
+  isDetailsVisible(): boolean {
+    return this.eventService.visibleComponent === VisibleComponent.DETAILS;
+  }
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpService} from '../../services/http.service';
+import {MatTableDataSource} from '@angular/material/table';
+import {FilmDto} from '../../models/FilmDto';
+import {EventService} from '../../services/event.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  get displayedColumns(): string[] {
+    return ['externalId', 'episodeId', 'title', 'releaseDate', 'details'];
   }
 
+  // Not suitable for server side pagination
+  dataSource: MatTableDataSource<FilmDto> = new MatTableDataSource<FilmDto>();
+
+  constructor(
+    private httpService: HttpService,
+    private eventService: EventService) { }
+
+  ngOnInit(): void {
+    this.httpService.GetFilms().subscribe(films => {
+      this.dataSource.data = films;
+    });
+  }
+
+  showDetails(dto: FilmDto): void {
+    if (dto.externalId != null) {
+      this.eventService.showDetails(dto.externalId);
+    }
+  }
 }
